@@ -36,7 +36,7 @@ export async function upgrade(config: UpgradeConfig): Promise<void> {
   const {
     install = true,
     downloadFinish = () => {},
-    installCallback,
+    installCallback = () => {},
     onError,
   } = config;
   const downloadOptions = {
