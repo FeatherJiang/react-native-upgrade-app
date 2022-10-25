@@ -1,6 +1,6 @@
 {
   "name": "react-native-upgrade-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react native upgrade app",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
