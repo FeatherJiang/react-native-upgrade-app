@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import { upgrade } from 'react-native-upgrade-app';
 
 const styles = StyleSheet.create({
@@ -21,22 +27,24 @@ function App() {
   const update = () => {
     // 请替换为一个可用的url
     // Please replace with an available url
-    upgrade({
-      fromUrl: 'https://example.com/example.apk',
-      progress: (res) => {
-        console.log('progress', res);
-        setProgress(Math.ceil((res.bytesWritten / res.contentLength) * 100));
-      },
-      downloadFinish: (success) => {
-        console.log('finish', success);
-      },
-      installCallback: (status, msg) => {
-        console.log('install', status, msg);
-      },
-      onError: (error) => {
-        console.log('error', error);
-      },
-    });
+    if (Platform.OS === 'android') {
+      upgrade({
+        fromUrl: 'https://example.com/example.apk',
+        progress: (res) => {
+          console.log('progress', res);
+          setProgress(Math.ceil((res.bytesWritten / res.contentLength) * 100));
+        },
+        downloadFinish: (success) => {
+          console.log('finish', success);
+        },
+        installCallback: (status, msg) => {
+          console.log('install', status, msg);
+        },
+        onError: (error) => {
+          console.log('error', error);
+        },
+      });
+    }
   };
 
   return (
